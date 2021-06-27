@@ -20,6 +20,13 @@ let Seattle={
            arr.push({hour:hours[i],amount:this.simuAmounts(this.minCust,this.maxCust)})
         }      
         return arr   
+    },
+    sum:function(){
+        let summ= this.resultSumAmount().reduce((accumlator,currentValue)=>{
+            return accumlator + currentValue.amount
+        },0)
+        console.log(summ);
+       return summ
     }
    
 }
@@ -41,7 +48,14 @@ let Tokyo={
               arr.push({hour:hours[i],amount:this.simuAmounts(this.minCust,this.maxCust)})
            }      
            return arr   
-       }
+       },
+       sum:function(){
+        let summ= this.resultSumAmount().reduce((accumlator,currentValue)=>{
+            return accumlator + currentValue.amount
+        },0)
+        console.log(summ);
+       return summ
+    }
 }
 let Dubai={
     minCust:11,
@@ -61,7 +75,14 @@ let Dubai={
               arr.push({hour:hours[i],amount:this.simuAmounts(this.minCust,this.maxCust)})
            }      
            return arr   
-       }
+       },
+       sum:function(){
+        let summ= this.resultSumAmount().reduce((accumlator,currentValue)=>{
+            return accumlator + currentValue.amount
+        },0)
+        console.log(summ);
+       return summ
+    }
 }
 let Paris={
     minCust:20,
@@ -81,7 +102,15 @@ let Paris={
               arr.push({hour:hours[i],amount:this.simuAmounts(this.minCust,this.maxCust)})
            }      
            return arr   
-       }
+       },
+       sum:function(){
+        let summ= this.resultSumAmount().reduce((accumlator,currentValue)=>{
+            return accumlator + currentValue.amount
+        },0)
+        console.log(summ);
+       return summ
+    }
+    
 }
 let Lima={
     minCust:2,
@@ -101,27 +130,49 @@ let Lima={
               arr.push({hour:hours[i],amount:this.simuAmounts(this.minCust,this.maxCust)})
            }      
            return arr   
-       }
+       },
+       sum:function(){
+        let summ= this.resultSumAmount().reduce((accumlator,currentValue)=>{
+            return accumlator + currentValue.amount
+        },0)
+        console.log(summ);
+       return summ
+    }
 }
 
 // console.log(Seattle.resultSumAmount());
 
-let sum=Seattle.resultSumAmount().reduce((accumlator,currentValue)=>{
-    return accumlator + currentValue.amount
-},0)
+// let sum=Seattle.resultSumAmount().reduce((accumlator,currentValue)=>{
+//     return accumlator + currentValue.amount
+// },0)
+
 //#endregion
-//#region renderHtml
+let objNames=[Seattle,Tokyo,Dubai,Paris,Lima]
+let objNamesStr=['Seattle','Tokyo','Dubai','Paris','Lima']
 let divContent=document.getElementById("objectContents");
 
-let h2= document.createElement('h2');
-
-
-let ul =  document.createElement('ul');
-
-for(let i =0;i<Lima.resultSumAmount.length;i++){
-    let li = document.createElement('li');
-    li.textContent = 'hjhnjkm'+ Lima.resultSumAmount[i].amount;
- ul.appendChild(li)  ; 
-
+for (let i = 0; i < objNames.length; i++) 
+{
+    let h2= document.createElement('h2');
+    h2.textContent=objNamesStr[i]
+    divContent.append(h2)
+    let ul =  document.createElement('ul')
+    for (let x = 0; x < objNames[i].resultSumAmount().length; x++) 
+    {
+        let li=document.createElement('li')
+        let H=objNames[i].resultSumAmount()[x].hour
+        let Amnt=Math.round((objNames[i].resultSumAmount()[x].amount *1000)/1000) + ' cookies'
+        li.textContent=H+' '+Amnt
+       
+        ul.append(li)
+        
+    }
+    divContent.appendChild(ul);
+    let h3 =document.createElement('h3')
+    h3='Total '+Math.round((objNames[i].sum() *1000)/1000)
+    ul.append(h3)
 }
-divContent.appendChild(ul);
+//#region renderHtml
+
+
+
