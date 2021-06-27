@@ -28,7 +28,6 @@ let Seattle={
         console.log(summ);
        return summ
     }
-   
 }
 let Tokyo={
     minCust:3,
@@ -109,8 +108,7 @@ let Paris={
         },0)
         console.log(summ);
        return summ
-    }
-    
+    } 
 }
 let Lima={
     minCust:2,
@@ -139,14 +137,9 @@ let Lima={
        return summ
     }
 }
-
-// console.log(Seattle.resultSumAmount());
-
-// let sum=Seattle.resultSumAmount().reduce((accumlator,currentValue)=>{
-//     return accumlator + currentValue.amount
-// },0)
-
 //#endregion
+
+//#region renderHtml
 let objNames=[Seattle,Tokyo,Dubai,Paris,Lima]
 let objNamesStr=['Seattle','Tokyo','Dubai','Paris','Lima']
 let divContent=document.getElementById("objectContents");
@@ -172,7 +165,7 @@ for (let i = 0; i < objNames.length; i++)
     h3='Total '+Math.round((objNames[i].sum() *1000)/1000)
     ul.append(h3)
 }
-//#region renderHtml
+//#endregion
 
 
 
