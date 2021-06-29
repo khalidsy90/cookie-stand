@@ -12,6 +12,7 @@ ul li
 }
 #div_img {
     width: 100%;
+    margin-bottom: 50px;
 }
 img{
     width: 100%;
@@ -24,4 +25,15 @@ h2{
   
     font-size: 30px;
     margin-left: 20px;
+}
+tr, td,table {
+    margin: 0px;
+    padding: 3px;
+    border: 2px solid black;
+    outline: 0;
+    font-size: 100%;
+
+}
+table{
+    text-size-adjust: 16px;
 }
