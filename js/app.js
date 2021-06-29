@@ -1,7 +1,7 @@
 'use strict'
 //#region objects
-let hours=['6 am','7 am','8 am','9 am','10 am','11 am','12 am','1 pm','2 pm','3 pm','4 pm','5 pm','6 pm','7 pm','8 pm']
-
+let hours=['6 am','7 am','8 am','9 am','10 am','11 am','12 pm','1 pm','2 pm','3 pm','4 pm','5 pm','6 pm','7 pm','8 pm']
+/*
 let Seattle={
     shopName:'Seattle',
     minCust:23,
@@ -40,7 +40,6 @@ let Seattle={
 Seattle.calcRandCustPerH()
 Seattle.CalcAvgCookies()
 Seattle.render()
-console.log(Seattle);
 let Tokyo={
     shopName:'Tokyo',
     minCust:3,
@@ -193,6 +192,107 @@ let Lima={
 Lima.calcRandCustPerH()
 Lima.CalcAvgCookies()
 Lima.render()
+
+
+*/
+function cities(shopName,minCust,maxCust,avgCookies){
+    this.shopName=shopName
+    this.minCust=minCust
+    this.maxCust=maxCust
+    this.avgCookies=avgCookies
+    this.randCust=[]
+    this.avgCookiesPerh=[]
+
+}
+
+cities.prototype.calcRandCustPerH=function(){
+    for (let i = 0; i < hours.length; i++) {
+        let min = Math.ceil(this.minCust);
+        let max = Math.floor(this.maxCust);
+        let rand_Cust = Math.floor(Math.random() * (max - min) + min)
+        
+            this.randCust.push(rand_Cust)
+        }
+}
+cities.prototype.CalcAvgCookies=function(){
+    for (let i = 0; i < hours.length; i++) {
+        this.avgCookiesPerh[i]=Math.floor(this.randCust[i] * this.avgCookies)
+    }
+}
+
+// variables Glabal
+
+let divContent=document.getElementById("objectContents")
+let table =document.createElement('table')
+
+//
+
+let Seattle_=new cities('seatle',23,65,6.3)
+Seattle_.calcRandCustPerH()
+Seattle_.CalcAvgCookies()
+let Tokyo_=new cities('Tokyo',3,24,4.2)
+Tokyo_.calcRandCustPerH()
+Tokyo_.CalcAvgCookies()
+let Dubai_=new cities('Dubai',11,38,3.7)
+Dubai_.calcRandCustPerH()
+Dubai_.CalcAvgCookies()
+let Paris_=new cities('Paris',20,38,2.3)
+Paris_.calcRandCustPerH()
+Paris_.CalcAvgCookies()
+let Lima_=new cities('Lima',2,16,4.6)
+Lima_.calcRandCustPerH()
+Lima_.CalcAvgCookies()
+
+let arrCities=[Seattle_,Tokyo_,Dubai_,Paris_,Lima_]
+
+function header()
+{
+let city=document.createElement('td')
+city.textContent='City'
+city.setAttribute('width', '6.3%')
+let tr =document.createElement('tr')
+tr.appendChild(city)
+hours.forEach((item)=>{
+    let td=document.createElement('td')
+    td.textContent=item
+    tr.appendChild(td)
+})
+let total=document.createElement('td')
+total.textContent='Total'
+tr.appendChild(total)
+table.appendChild(tr)
+divContent.appendChild(table)
+}
+
+header()
+
+cities.prototype.render=function(){
+    let tr=document.createElement('tr')
+    let shop=document.createElement('td')
+    shop.textContent=this.shopName
+    tr.appendChild(shop)
+    let sum=0
+    let totals=document.createElement('td')
+    totals.textContent=''
+    this.avgCookiesPerh.forEach((item)=>{
+        let td=document.createElement('td')
+        td.textContent=item
+        tr.appendChild(td)
+        sum+=item
+    })
+    totals.textContent=sum
+    tr.append(totals)
+    table.appendChild(tr)
+    divContent.appendChild(table)
+}
+
+
+Seattle_.render()
+Tokyo_.render()
+Dubai_.render()
+Paris_.render()
+Lima_.render()
+
 
 
 
