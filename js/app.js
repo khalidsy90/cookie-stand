@@ -202,7 +202,6 @@ function cities(shopName,minCust,maxCust,avgCookies){
     this.avgCookies=avgCookies
     this.randCust=[]
     this.avgCookiesPerh=[]
-
 }
 
 cities.prototype.calcRandCustPerH=function(){
@@ -266,6 +265,7 @@ divContent.appendChild(table)
 
 header()
 
+
 cities.prototype.render=function(){
     let tr=document.createElement('tr')
     let shop=document.createElement('td')
@@ -293,6 +293,29 @@ Dubai_.render()
 Paris_.render()
 Lima_.render()
 
-
+function footer()
+{
+    let tr=document.createElement('tr')
+    let td=document.createElement('td')
+    td.textContent='Total'
+    tr.appendChild(td)
+    let megaSum=0
+    for (let i = 0; i < hours.length; i++) {
+       let tds=document.createElement('td')
+       let sum=0
+       for (let x = 0; x < arrCities.length; x++) {
+            sum+=arrCities[x].avgCookiesPerh[i]           
+       }
+       megaSum+=sum
+       tds.textContent=sum    
+       tr.appendChild(tds)
+    }
+    let mega=document.createElement('td')
+    mega.textContent=megaSum
+    tr.appendChild(mega)
+    table.appendChild(tr)
+    divContent.appendChild(table)
+}
+footer()
 
 
