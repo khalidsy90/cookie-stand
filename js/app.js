@@ -192,9 +192,8 @@ let Lima={
 Lima.calcRandCustPerH()
 Lima.CalcAvgCookies()
 Lima.render()
-
-
 */
+let arrCities=new Array()
 function cities(shopName,minCust,maxCust,avgCookies){
     this.shopName=shopName
     this.minCust=minCust
@@ -202,6 +201,7 @@ function cities(shopName,minCust,maxCust,avgCookies){
     this.avgCookies=avgCookies
     this.randCust=[]
     this.avgCookiesPerh=[]
+    this.arrCities=arrCities.push(this)
 }
 
 cities.prototype.calcRandCustPerH=function(){
@@ -241,8 +241,6 @@ Paris_.CalcAvgCookies()
 let Lima_=new cities('Lima',2,16,4.6)
 Lima_.calcRandCustPerH()
 Lima_.CalcAvgCookies()
-
-let arrCities=[Seattle_,Tokyo_,Dubai_,Paris_,Lima_]
 
 function header()
 {
@@ -293,6 +291,7 @@ Dubai_.render()
 Paris_.render()
 Lima_.render()
 
+console.log(arrCities);
 function footer()
 {
     let tr=document.createElement('tr')
@@ -318,4 +317,49 @@ function footer()
 }
 footer()
 
+/* add shop by user */
+let myform=document.getElementById('myform')
+function addNewShop(event)
+{
+    event.preventDefault()
+    //declare variables
+    let shopName_=document.querySelector('input[name=shopName]')
+    let minCust_=document.querySelector('input[name=minCust]')
+    let maxCust_=document.querySelector('input[name=maxCust]')
+    let avgCookies_=document.querySelector('input[name=avgCookies]')
+    let newSum=new Array()
+    //assign vatiables
+    shopName_=event.target.shopName.value
+    minCust_=event.target.minCust.value
+    maxCust_=event.target.maxCust.value
+    avgCookies_=event.target.avgCookies.value
+    // genrate new row from user
+    table.deleteRow(table.rows.length-1)
+    let newshop =new cities(shopName_,minCust_,maxCust_,avgCookies_)
+    newshop.calcRandCustPerH()
+    newshop.CalcAvgCookies()
+    
+    newshop.render()
+    console.log(arrCities);
+}
+myform.addEventListener('submit',addNewShop)
 
+function sumRows(){
+    let subSum=0   
+    arrCities.forEach((item)=>{
+        item.avgCookiesPerh.forEach((current)=>{
+            subSum+=current
+        })
+    })
+    return subSum
+}
+
+function sumColumns(){
+let T=0
+for (let i = 0; i < hours.length; i++) {
+    for (let s = 0; s < arrCities.length; s++) {
+        T+=arrCities[s].avgCookiesPerh[i]
+    }
+    }   
+    return T
+}

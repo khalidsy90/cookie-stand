@@ -1,9 +1,20 @@
+*{
+    box-sizing: border-box;
+}
+body
+{
+    text-align:center;
+}
 ul{
 
     list-style-type: disc;
     padding: 30px;
     margin: 20px;
     background-color: cyan;
+}
+#objectContents
+{
+    text-align: center
 }
 ul li
 {
@@ -33,4 +44,11 @@ tr, td,table {
     outline: 0;
     font-size: 100%;
 
+}
+table{
+    margin:auto;
+}
+#myform
+{
+    margin:40px 0;
 }
