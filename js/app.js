@@ -290,8 +290,31 @@ Tokyo_.render()
 Dubai_.render()
 Paris_.render()
 Lima_.render()
-
-console.log(arrCities);
+let arrTotalCol=[]
+// function footer()
+// {
+//     let tr=document.createElement('tr')
+//     let td=document.createElement('td')
+//     td.textContent='Total'
+//     tr.appendChild(td)
+//     let megaSum=0
+//     for (let i = 0; i < hours.length; i++) {
+//        let tds=document.createElement('td')
+//        let sum=0
+//        for (let x = 0; x < arrCities.length; x++) {
+//             sum+=arrCities[x].avgCookiesPerh[i]           
+//        }
+//        megaSum+=sum
+//        tds.textContent=sum    
+//        tr.appendChild(tds)
+//     }
+//     let mega=document.createElement('td')
+//     mega.textContent=megaSum
+//     tr.appendChild(mega)
+//     table.appendChild(tr)
+//     divContent.appendChild(table)
+// }
+sumToltalColumns()
 function footer()
 {
     let tr=document.createElement('tr')
@@ -299,18 +322,15 @@ function footer()
     td.textContent='Total'
     tr.appendChild(td)
     let megaSum=0
-    for (let i = 0; i < hours.length; i++) {
+    let sum=0
+    for (let i = 0; i < arrTotalCol.length-1; i++) {
        let tds=document.createElement('td')
-       let sum=0
-       for (let x = 0; x < arrCities.length; x++) {
-            sum+=arrCities[x].avgCookiesPerh[i]           
-       }
-       megaSum+=sum
+       sum=arrTotalCol[i]
        tds.textContent=sum    
        tr.appendChild(tds)
     }
     let mega=document.createElement('td')
-    mega.textContent=megaSum
+    mega.textContent=arrTotalCol[arrTotalCol.length-1]
     tr.appendChild(mega)
     table.appendChild(tr)
     divContent.appendChild(table)
@@ -338,8 +358,8 @@ function addNewShop(event)
     let newshop =new cities(shopName_,minCust_,maxCust_,avgCookies_)
     newshop.calcRandCustPerH()
     newshop.CalcAvgCookies()
-    
     newshop.render()
+    footer()
     console.log(arrCities);
 }
 myform.addEventListener('submit',addNewShop)
@@ -354,12 +374,18 @@ function sumRows(){
     return subSum
 }
 
-function sumColumns(){
+
+function sumToltalColumns(){
+if(arrTotalCol.length > 0 ) arrTotalCol.length=0
 let T=0
 for (let i = 0; i < hours.length; i++) {
+    let newTotal=0
     for (let s = 0; s < arrCities.length; s++) {
+        newTotal+=arrCities[s].avgCookiesPerh[i]
         T+=arrCities[s].avgCookiesPerh[i]
     }
+    arrTotalCol.push(newTotal)
     }   
+    arrTotalCol.push(T+sumRows())
     return T
 }
