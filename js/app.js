@@ -359,8 +359,9 @@ function addNewShop(event)
     newshop.calcRandCustPerH()
     newshop.CalcAvgCookies()
     newshop.render()
+    sumToltalColumns()
     footer()
-    console.log(arrCities);
+    console.log(arrTotalCol);
 }
 myform.addEventListener('submit',addNewShop)
 
@@ -376,8 +377,10 @@ function sumRows(){
 
 
 function sumToltalColumns(){
-if(arrTotalCol.length > 0 ) arrTotalCol.length=0
-let T=0
+if(arrTotalCol.length > 0 ){
+    arrTotalCol.length=0
+}
+    let T=0
 for (let i = 0; i < hours.length; i++) {
     let newTotal=0
     for (let s = 0; s < arrCities.length; s++) {
@@ -389,3 +392,4 @@ for (let i = 0; i < hours.length; i++) {
     arrTotalCol.push(T+sumRows())
     return T
 }
+console.log(arrTotalCol);
