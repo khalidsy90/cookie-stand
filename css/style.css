@@ -1,9 +1,52 @@
+/*nav*/
+
+/**/
 *{
     box-sizing: border-box;
 }
 body
 {
     text-align:center;
+}
+.carouselSec{
+    height:200px;
+    margin-bottom: 600px;
+}
+.carousel{
+    padding:0 50px 50px 50px;
+    
+}
+.sec-p{
+    margin-top:70px 0
+}
+.sec-p h2{
+    margin-bottom: 70px;
+}
+.sec-p p{
+    margin: 0 50px;
+    margin-bottom:120px;
+    font-size:50px;
+}
+.carousel img{
+    height:90vh
+}
+.mapSec{
+    margin:auto;
+    text-align:center;
+   
+}
+.mapSec .map{
+    margin: auto;
+}
+.addressSec{
+margin-top:50px;
+}
+.addressSec h2{
+    margin-bottom:30;
+}
+.addressSec p{
+    font-size:50px;
+    margin-bottom:20px;
 }
 ul{
 
@@ -45,10 +88,33 @@ tr, td,table {
     font-size: 100%;
 
 }
+tr{
+    border-bottom: 1px solid #dddddd;
+}
+tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
 table{
-    margin:auto;
+    /* margin:auto;
+    color:white; */
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 #myform
 {
     margin:40px 0;
+}
+.salebody{
+    background-color: rgba(0,0, 0,0.7)
 }

@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 'use strict'
 //#region objects
 let hours=['6 am','7 am','8 am','9 am','10 am','11 am','12 pm','1 pm','2 pm','3 pm','4 pm','5 pm','6 pm','7 pm','8 pm']
@@ -361,7 +363,6 @@ function addNewShop(event)
     newshop.render()
     sumToltalColumns()
     footer()
-    console.log(arrTotalCol);
 }
 myform.addEventListener('submit',addNewShop)
 
@@ -374,7 +375,6 @@ function sumRows(){
     })
     return subSum
 }
-
 
 function sumToltalColumns(){
 if(arrTotalCol.length > 0 ){
@@ -393,3 +393,4 @@ for (let i = 0; i < hours.length; i++) {
     return T
 }
 console.log(arrTotalCol);
+
